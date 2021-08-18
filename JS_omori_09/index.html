@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script type="js/main.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyAQuAc3nhzuTyEtRTG_Ex3uR3K16i6yGQk"></script>
+
+    <title>IdeaByAccident</title> <!-- タブ表示 -->
+
+</head>
+<body>
+    
+<header class="header_menu">
+    <div class="header_wrap">
+        <img class="wrapper" src="img/header-logo.jpeg" alt="">
+       
+        <nav>
+            <ul class="nav-list">
+            <li class="nav-item"><a href="#About">ABOUT</a></li>
+            <li class="nav-item"><a href="#Course">COURSE</a></li>
+            <li class="nav-item"><a href="#News">NEWS</a></li>
+            <li class="nav-item"><a href="#Access">ACCESS</a></li>
+            <li class="nav-item"><a href="#Contact">CONTACT</a></li>
+          </ul>
+        
+        </nav>
+
+    </div>
+
+
+    <div class="header_image">
+
+        <img src="img/main.jpeg" alt="">
+        
+        <!-- <p class="header_image_title">セカイを変える男性洋楽ロックバンドを聞こう！<p>
+        <p class="header_image__text">男性洋楽バンドの系譜とともに。</p>
+        <p class="header_image__text">「カワイイ」から、「カッコいい」へ！</p> -->
+
+    </div>
+
+
+</header>
+
+
+<main>
+
+    <ul>
+        <li id="omikuji">ダーツを投げる！</li>
+    </ul>
+
+
+    <div id="map"> </div>
+    <div id="maker"> </div>
+    <div id="infoWindow"> </div>
+
+    <p id="result1"></p>
+    <p id="result2"></p>
+    
+    <style>
+        #map    {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+
+
+
+</main>
+
+
+
+<footer>
+    <small class="copyrights">copyright 2021 Accident Inc. All RIghts Reserved.</small>
+</footer>
+
+
+<script>
+    // 初期表示用
+
+    var MyLatLng = new google.maps.LatLng(35.6811673, 139.7670516);
+
+    var Options = {
+      zoom: 15,
+      center: MyLatLng,
+      mapTypeId: 'roadmap'
+    };
+    
+    var map = new google.maps.Map(document.getElementById('map'), Options);
+
+    var maker = new google.maps.Marker({
+            position: MyLatLng,
+            map: map,
+            icon: "img/darts.jpeg"
+    })
+
+    var infoWindow = new google.maps.InfoWindow({
+        content: '<div class="map">起点　東京駅！</div>'
+    });
+    infoWindow.open(map, maker);
+
+
+    console.log(MyLatLng);
+    console.log(map);
+    console.log(Options);
+    console.log(maker);
+
+
+
+
+    $("#omikuji").on("click", function () {
+
+      const e_lat = Math.random() * 2;
+      const n_lng = Math.random() * 2;
+      let e_log = "";
+      let n_log = "";
+      e_log = 35 + e_lat;
+      n_log = 139 + n_lng;
+
+      var MyLatLng = new google.maps.LatLng(e_log, n_log);
+      var Options = {
+        zoom: 12,
+        center: MyLatLng,
+        mapTypeId: 'roadmap'
+      };
+
+      var map = new google.maps.Map(document.getElementById('map'), Options);
+
+      var maker = new google.maps.Marker({
+            position: MyLatLng,
+            map: map,
+            icon: "img/darts.jpeg"
+    })
+
+    var infoWindow = new google.maps.InfoWindow({
+        content: '<div class="map">ここはどこだ？　でも、ここに行こう！　海の場合はもう一回！</div>'
+    });
+    infoWindow.open(map, maker);
+
+
+      $("#result1").html(e_log);
+      $("#result2").html(n_log)
+
+    });
+
+
+</script>
+
+
+
+
+</body>
+</html>
